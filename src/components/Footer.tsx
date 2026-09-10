@@ -24,7 +24,13 @@ export default function Footer({ onNavigate }: Props) {
         </div>
         <div className="footer-column">
           <small>Showroom</small>
-          <span><MapPin size={15} /> Ottoman Center, Ergazi Mah. 1804 Cad. 6/10 Yenimahalle / Ankara</span>
+          <a
+            href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent('Libasyum avize, Ergazi, 1804. Cd. No:6 D:10, 06370 Yenimahalle/Ankara')}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <MapPin size={15} /> Ergazi, 1804. Cd. No:6 D:10, 06370 Yenimahalle/Ankara
+          </a>
           <span>Pzt — Cmt / 09:00 — 18:00</span>
         </div>
         <div className="footer-column social">

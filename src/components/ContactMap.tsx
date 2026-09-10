@@ -2,9 +2,10 @@ import { useEffect, useRef } from 'react';
 import * as L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-const LAT = 39.9492;
-const LNG = 32.7107;
-const ADDRESS = 'Ottoman Center, Ergazi Mah. 1804 Cad. 6/10 Yenimahalle / Ankara';
+const LAT = 39.9488;
+const LNG = 32.7095;
+const ADDRESS = 'Ergazi, 1804. Cd. No:6 D:10, 06370 Yenimahalle/Ankara';
+const GOOGLE_MAPS_DESTINATION = 'Libasyum avize, Ergazi, 1804. Cd. No:6 D:10, 06370 Yenimahalle/Ankara';
 
 export default function ContactMap() {
   const mapRef = useRef<HTMLDivElement>(null);
@@ -32,7 +33,7 @@ export default function ContactMap() {
 
     const map = leaflet.map(mapRef.current, {
       center: [LAT, LNG],
-      zoom: 15,
+      zoom: 16,
       zoomControl: true,
       scrollWheelZoom: false,
       attributionControl: false,
@@ -40,13 +41,22 @@ export default function ContactMap() {
 
     leaflet.control.attribution({ position: 'bottomleft' }).addTo(map);
 
-    leaflet.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>',
+    leaflet.tileLayer('https://{s}.google.com/vt/lyrs=m&hl=tr&x={x}&y={y}&z={z}', {
+      maxZoom: 20,
+      subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+      attribution: '&copy; Google Haritalar',
     }).addTo(map);
 
+    const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(GOOGLE_MAPS_DESTINATION)}`;
+
     const marker = leaflet.marker([LAT, LNG], { icon: markerIcon }).addTo(map);
-    marker.bindPopup(`<strong style="color:#535353">Libasyum Avize</strong><br/><span style="font-size:12px;color:#777">${ADDRESS}</span>`);
+    marker.bindPopup(`
+      <div style="font-family: inherit; padding: 2px;">
+        <strong style="color:#535353; font-size:14px;">Libasyum Avize</strong><br/>
+        <span style="font-size:12px; color:#666; line-height:1.4; display:block; margin:4px 0 8px;">${ADDRESS}</span>
+        <a href="${directionsUrl}" target="_blank" rel="noopener noreferrer" style="color:#b99970; font-weight:700; font-size:11px; text-transform:uppercase; text-decoration:underline;">Yol Tarifi Al &rarr;</a>
+      </div>
+    `);
 
     mapInstance.current = map;
 
@@ -58,7 +68,7 @@ export default function ContactMap() {
 
   const openGoogleMapsDirections = () => {
     window.open(
-      `https://www.google.com/maps/dir/?api=1&destination=${LAT},${LNG}`,
+      `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(GOOGLE_MAPS_DESTINATION)}`,
       '_blank',
       'noopener,noreferrer'
     );
@@ -69,7 +79,7 @@ export default function ContactMap() {
       <div className="contact-map-header">
         <div className="eyebrow"><span /> Bizi ziyaret edin</div>
         <h2>Showroom&apos;umuz<br /><em>burada.</em></h2>
-        <p>Ottoman Center, Ergazi Mah. 1804 Cad. 6/10 Yenimahalle / Ankara</p>
+        <p>{ADDRESS}</p>
       </div>
       <div className="contact-map-wrap">
         <div ref={mapRef} className="contact-map" />

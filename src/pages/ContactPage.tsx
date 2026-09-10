@@ -50,10 +50,15 @@ export default function ContactPage({ onNavigate }: Props) {
                 <span className="contact-icon"><Mail size={18} /></span>
                 <div><small>E-posta</small><strong>info@libasyum.com.tr</strong></div>
               </a>
-              <div className="contact-item no-link">
+              <a
+                className="contact-item"
+                href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent('Libasyum avize, Ergazi, 1804. Cd. No:6 D:10, 06370 Yenimahalle/Ankara')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <span className="contact-icon"><MapPin size={18} /></span>
-                <div><small>Showroom</small><strong>Ottoman Center, Ergazi Mah. 1804 Cad. 6/10 Yenimahalle / Ankara</strong></div>
-              </div>
+                <div><small>Showroom (Yol Tarifi)</small><strong>Ergazi, 1804. Cd. No:6 D:10, 06370 Yenimahalle/Ankara</strong></div>
+              </a>
             </div>
             <div className="contact-hours">
               <small>Çalışma Saatleri</small>
