@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowDown, ArrowRight, Check, FileText, Mail, X } from 'lucide-react';
+import { ArrowRight, Check, FileText, Mail, X } from 'lucide-react';
 
 const catalogData = [
   {
@@ -99,6 +99,17 @@ export default function CatalogPage({ onNavigate }: Props) {
             <a className="button button-dark full-button" href="mailto:info@libasyum.com.tr?subject=Katalog%20Talebi">
               Katalog talep et <Mail size={17} />
             </a>
+            <button
+              type="button"
+              className="text-button"
+              style={{ marginTop: '14px', justifyContent: 'center', width: '100%', color: '#777' }}
+              onClick={() => {
+                setModalOpen(false);
+                onNavigate('contact');
+              }}
+            >
+              Veya İletişim Formunu Kullanın <ArrowRight size={14} />
+            </button>
             <div className="modal-note"><Check size={15} /> Güncel PDF dosyaları için doğrudan ekibimizle iletişime geçebilirsiniz.</div>
           </div>
         </div>

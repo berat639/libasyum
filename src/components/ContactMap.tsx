@@ -2,8 +2,8 @@ import { useEffect, useRef } from 'react';
 import * as L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-const LAT = 39.7975;
-const LNG = 32.8125;
+const LAT = 39.9492;
+const LNG = 32.7107;
 const ADDRESS = 'Ottoman Center, Ergazi Mah. 1804 Cad. 6/10 Yenimahalle / Ankara';
 
 const markerIcon = L.divIcon({

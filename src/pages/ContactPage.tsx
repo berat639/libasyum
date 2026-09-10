@@ -67,7 +67,10 @@ export default function ContactPage({ onNavigate }: Props) {
                 <span className="success-icon"><Check size={32} /></span>
                 <h3>Talebiniz alındı</h3>
                 <p>E-posta uygulamanız açıldı. Mesajınızı göndererek talebinizi tamamlayabilirsiniz. En kısa sürede size dönüş yapacağız.</p>
-                <button className="button button-dark" type="button" onClick={() => setSubmitted(false)}>Yeni talep oluştur</button>
+                <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                  <button className="button button-dark" type="button" onClick={() => setSubmitted(false)}>Yeni talep oluştur</button>
+                  <button className="button button-light" type="button" onClick={() => onNavigate('home')}>Ana Sayfaya Dön</button>
+                </div>
               </div>
             ) : (
               <form className="contact-form" onSubmit={handleSubmit}>
