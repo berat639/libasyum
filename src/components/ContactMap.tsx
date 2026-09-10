@@ -38,13 +38,12 @@ export default function ContactMap() {
       attributionControl: false,
     });
 
-    leaflet.tileLayer(
-      'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-      {
-        maxZoom: 19,
-        subdomains: 'abcd',
-      }
-    ).addTo(map);
+    leaflet.control.attribution({ position: 'bottomleft' }).addTo(map);
+
+    leaflet.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>',
+    }).addTo(map);
 
     const marker = leaflet.marker([LAT, LNG], { icon: markerIcon }).addTo(map);
     marker.bindPopup(`<strong style="color:#535353">Libasyum Avize</strong><br/><span style="font-size:12px;color:#777">${ADDRESS}</span>`);
